@@ -161,7 +161,7 @@ const getQuest = async (quest, year) => {
     const solutionDirectory = path.join(baseDirectory, 'quests', year, `quest${quest.padStart(2, '0')}`);
     const exists = await checkForExistance(solutionDirectory);
 
-    // if directory doesn't exist, throw error
+    // if directory doesn't exist, generate folder
     if (!exists) {
         await fs.mkdir(path.join(solutionDirectory, 'inputs'), { recursive: true });
     }
@@ -179,6 +179,31 @@ const getQuest = async (quest, year) => {
     await fs.writeFile(path.join(solutionDirectory, 'inputs/input2.txt'), inputs.input2);
     await fs.writeFile(path.join(solutionDirectory, 'inputs/input3.txt'), inputs.input3);
     await fs.writeFile(path.join(solutionDirectory, 'solution.js'), script);
+}
+
+/**
+ * gets all the inputs for the specified quest
+ * used to easily clone the git repo as inputs are not stored there
+ * 
+ * @param {string} quest number of quest to get 
+ * @param {string} year year of event to get 
+ */
+const updateQuest = async (quest, year) => {
+    const solutionDirectory = path.join(baseDirectory, 'quests', year, `quest${quest.padStart(2, '0')}`);
+    const exists = await checkForExistance(path.join(solutionDirectory, 'inputs'));
+
+    // if directory doesn't exist, generate folder
+    if (!exists) {
+        await fs.mkdir(path.join(solutionDirectory, 'inputs'), { recursive: true });
+    }
+
+    // read all sources
+    const inputs = await getAllInputs(quest, year);
+
+    // write the files necessary
+    await fs.writeFile(path.join(solutionDirectory, 'inputs/input1.txt'), inputs.input1);
+    await fs.writeFile(path.join(solutionDirectory, 'inputs/input2.txt'), inputs.input2);
+    await fs.writeFile(path.join(solutionDirectory, 'inputs/input3.txt'), inputs.input3);
 }
 
 /**
@@ -294,4 +319,4 @@ const profileQuest = async (quest, year) => {
     return { error: false };
 } 
 
-export { getQuest, profileQuest, runQuest };
+export { getQuest, profileQuest, runQuest, updateQuest };

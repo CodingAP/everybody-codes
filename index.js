@@ -7,7 +7,7 @@
  * 11/13/2024
  */
 
-import { getQuest, runQuest, profileQuest } from './lib.js';
+import { getQuest, runQuest, profileQuest, updateQuest } from './lib.js';
 
 /**
  * all arguments to be used by a command
@@ -87,7 +87,7 @@ const commandLineInfo = {
             arguments: ['quest', 'year'],
             command: args => {
                 console.log(`${RED_COLOR}manager: ${GREEN_COLOR}profiling solution for quest ${YELLOW_COLOR}${args.quest}${GREEN_COLOR}, year ${YELLOW_COLOR}${args.year}${GREEN_COLOR}!${DEFAULT_COLOR}`);
-                profileQuest(args.quest, args.year, args.inputmode)
+                profileQuest(args.quest, args.year)
                     .then(results => {
                         if (results.error) {
                             console.log(`${RED_COLOR}manager: error - ${results.message}${DEFAULT_COLOR}`);
@@ -99,6 +99,17 @@ const commandLineInfo = {
                     });
             }
         },
+        update: {
+            aliases: ['u'],
+            description: 'updates the inputs of the quest specified.',
+            arguments: ['quest', 'year'],
+            command: args => {
+                updateQuest(args.quest, args.year)
+                    .then(results => {
+                        console.log(`${RED_COLOR}manager: ${GREEN_COLOR}generated inputs for quest ${YELLOW_COLOR}${args.quest}${GREEN_COLOR}, year ${YELLOW_COLOR}${args.year}${GREEN_COLOR}!${DEFAULT_COLOR}\n`);
+                    });
+            }
+        }
     },
     arguments: {
         quest: {
