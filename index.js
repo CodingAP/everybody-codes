@@ -16,6 +16,7 @@ import { getQuest, runQuest, profileQuest, updateQuest } from './lib.js';
  * @property {string} quest day of the puzzle to process
  * @property {string} year year of the puzzle to process
  * @property {string} part which part(s) of the puzzle to process
+ * @property {string} iterations how many iterations the profiler needs to run
  */
 
 /**
@@ -87,7 +88,7 @@ const commandLineInfo = {
             arguments: ['quest', 'year'],
             command: args => {
                 console.log(`${RED_COLOR}manager: ${GREEN_COLOR}profiling solution for quest ${YELLOW_COLOR}${args.quest}${GREEN_COLOR}, year ${YELLOW_COLOR}${args.year}${GREEN_COLOR}!${DEFAULT_COLOR}`);
-                profileQuest(args.quest, args.year)
+                profileQuest(args.quest, args.year, args.iterations)
                     .then(results => {
                         if (results.error) {
                             console.log(`${RED_COLOR}manager: error - ${results.message}${DEFAULT_COLOR}`);
@@ -129,6 +130,12 @@ const commandLineInfo = {
             description: 'which part(s) of the quest to process.',
             default: 'all',
             expects: ['all', '1', '2', '3']
+        },
+        iterations: {
+            aliases: ['i'],
+            description: 'how many iterations to run the profiler',
+            default: '10',
+            expects: ['1', '3', '10']
         }
     }
 };

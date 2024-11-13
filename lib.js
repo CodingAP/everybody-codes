@@ -82,8 +82,8 @@ const getTitle = async (quest, year) => {
     const response = await fetch(`https://everybody-codes.b-cdn.net/assets/${year}/${quest}/description.json`);
     const json = await response.json();
 
-    // decrypt it
-    return decryptText(json.title, keys.key1);
+    // decrypt it or return nothing
+    return (keys.key1) ? decryptText(json.title, keys.key1) : 'no title available';
 }
 
 /**
@@ -102,11 +102,11 @@ const getAllInputs = async (quest, year) => {
     const response = await fetch(`https://everybody-codes.b-cdn.net/assets/${year}/${quest}/input/${seed}.json`);
     const json = await response.json();
 
-    // return the decrypted object
+    // return the decrypted object or empty object if no keys are provided
     return {
-        input1: decryptText(json['1'], keys.key1),
-        input2: decryptText(json['2'], keys.key2),
-        input3: decryptText(json['3'], keys.key3)
+        input1: (keys.key1) ? decryptText(json['1'], keys.key1) : 'no input available!',
+        input2: (keys.key2) ? decryptText(json['2'], keys.key2) : 'no input available!',
+        input3: (keys.key3) ? decryptText(json['3'], keys.key3) : 'no input available!',
     }
 }
 
@@ -252,9 +252,10 @@ const runQuest = async (quest, year, part) => {
  * 
  * @param {string} quest number of quest to get 
  * @param {string} year year of event to get 
+ * @param {string} iterations how many iterations the profiler needs to run
  * @returns {Promise<{ error: true, message: string } | { error: false }>} returns if there is an error or not
  */
-const profileQuest = async (quest, year) => {
+const profileQuest = async (quest, year, iterations) => {
     const solutionDirectory = path.join(baseDirectory, 'quests', year, `quest${quest.padStart(2, '0')}`);
     const exists = await checkForExistance(solutionDirectory);
 
@@ -270,10 +271,9 @@ const profileQuest = async (quest, year) => {
     const input3 = (await fs.readFile(path.join(solutionDirectory, 'inputs/input3.txt'))).toString();
 
     // time part1
-    const codeRunTimes = 10;
     let part1Result, part2Result, part3Result;
     let part1Time = 0, part2Time = 0, part3Time = 0;
-    for (let i = 0; i < codeRunTimes; i++) {
+    for (let i = 0; i < iterations; i++) {
         let start = performance.now();
         part1Result = await part1(input1);
         let end = performance.now();
@@ -282,7 +282,7 @@ const profileQuest = async (quest, year) => {
     }
 
     // time part2
-    for (let i = 0; i < codeRunTimes; i++) {
+    for (let i = 0; i < iterations; i++) {
         let start = performance.now();
         part2Result = await part2(input2);
         let end = performance.now();
@@ -291,7 +291,7 @@ const profileQuest = async (quest, year) => {
     }
 
     // time part3
-    for (let i = 0; i < codeRunTimes; i++) {
+    for (let i = 0; i < iterations; i++) {
         let start = performance.now();
         part3Result = await part3(input3);
         let end = performance.now();
@@ -308,11 +308,11 @@ const profileQuest = async (quest, year) => {
         .replace(/%QUEST%/g, quest)
         .replace(/%TITLE%/g, title)
         .replace(/%PART1_RESULT%/g, part1Result)
-        .replace(/%PART1_TIME%/g, (part1Time / codeRunTimes).toFixed(2))
+        .replace(/%PART1_TIME%/g, (part1Time / iterations).toFixed(2))
         .replace(/%PART2_RESULT%/g, part2Result)
-        .replace(/%PART2_TIME%/g, (part2Time / codeRunTimes).toFixed(2))
+        .replace(/%PART2_TIME%/g, (part2Time / iterations).toFixed(2))
         .replace(/%PART3_RESULT%/g, part3Result)
-        .replace(/%PART3_TIME%/g, (part3Time / codeRunTimes).toFixed(2));
+        .replace(/%PART3_TIME%/g, (part3Time / iterations).toFixed(2));
 
     await fs.writeFile(path.join(solutionDirectory, 'README.md'), readme);
 
