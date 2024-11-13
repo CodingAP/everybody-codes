@@ -22,7 +22,8 @@ const baseDirectory = path.resolve('./');
  * right now it is just the cookie for the account used
  */
 const FETCH_HEADERS = {
-    Cookie: `everybody-codes=${process.env.SESSION}`
+    Cookie: `everybody-codes=${process.env.SESSION}`,
+    'User-Agent': 'discord:excellentap https://github.com/CodingAP/everybody-codes'
 };
 
 /**
