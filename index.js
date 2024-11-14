@@ -85,7 +85,7 @@ const commandLineInfo = {
         profile: {
             aliases: ['p'],
             description: 'test the run time and accuracy of the quest specified.',
-            arguments: ['quest', 'year'],
+            arguments: ['quest', 'year', 'iterations'],
             command: args => {
                 console.log(`${RED_COLOR}manager: ${GREEN_COLOR}profiling solution for quest ${YELLOW_COLOR}${args.quest}${GREEN_COLOR}, year ${YELLOW_COLOR}${args.year}${GREEN_COLOR}!${DEFAULT_COLOR}`);
                 profileQuest(args.quest, args.year, args.iterations)
@@ -133,7 +133,7 @@ const commandLineInfo = {
         },
         iterations: {
             aliases: ['i'],
-            description: 'how many iterations to run the profiler',
+            description: 'how many iterations to run the profiler.',
             default: '10',
             expects: ['1', '3', '10']
         }

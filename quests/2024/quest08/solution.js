@@ -62,24 +62,27 @@ const part3 = async input => {
     let thickness = 1;
     const columns = [1];
     const highPriests = 10;
-    const max = 202400000000;
+    const max = 202400000;
 
     // count the number of blocks until it goes over the max
     // we only need to store half the list because it is mirrored
-    // still takes a while :/
     while (true) {
         thickness = (thickness * priests) % highPriests + highPriests;
         for (let i = 0; i < columns.length; i++) {
             columns[i] += thickness;
         }
         columns.push(thickness);
+
+        const calculateColumnCount = i => {
+            return columns[i] - (priests * (columns.length * 2 - 1) * columns[i] % highPriests);
+        }
         
         // calculate the total count with the removals in mind
         let count = 0;
         for (let i = 0; i < columns.length; i++) {
-            if (i == 0) count += columns[i] - ((priests * (columns.length * 2 - 1) * columns[i]) % highPriests);
+            if (i == 0) count += calculateColumnCount(i);
             else if (i == columns.length - 1) count += 2 * columns[i];
-            else count += 2 * (columns[i] - ((priests * (columns.length * 2 - 1) * columns[i]) % highPriests));
+            else count += 2 * calculateColumnCount(i);
         }
 
         if (count > max) return count - max;
