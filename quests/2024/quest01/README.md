@@ -6,6 +6,8 @@
 | **Results** | 1404 | 5237 | 28225 |
 | **Time (in ms)** | 0.18 | 0.25 | 0.77 |
 
+Leaderboard Position: 1129/1008/941
+
 Hello all! This seems to be a new platform for language-agnostic, speed irrelevant coding problems to be solved! I decided to take an approach like my Advent of Code repository, and make an automated system that can fetch and run inputs.
 
 This problem consists of defeating enemies in a line with different amounts of potions. In part 1, we are introduced to three enemies:
