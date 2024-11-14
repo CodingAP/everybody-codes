@@ -4,7 +4,7 @@
 || **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | DFAJBGCKE | EHCGDIJAF | 3702 |
-| **Time (in ms)** | 0.43 | 2.76 | 153400.33 |
+| **Time (in ms)** | 0.10 | 1.37 | 733.65 |
 
 Leaderboard Position: 9/12/23
 
@@ -22,4 +22,4 @@ is the same as
 +===++-=+=-S
 ```
 
-I chose to include this in the input file to make it easier to parse then we race all the participants on it to rank them. In part 3, the racetrack is more complicated, and we need to find all possible winning action plans if we are limited to 5 `+`'s, 3 `-`'s, and 3 `=`'s. We can generate all possible plans, then see if that beats the score of the one participant we was given as an input. This one takes a while, but I couldn't think of a way to make it faster. There is no loops as all the number of actions done was prime, with none of the looping numbers being a factor of 11. 
+I chose to include this in the input file to make it easier to parse then we race all the participants on it to rank them. In part 3, the racetrack is more complicated, and we need to find all possible winning action plans if we are limited to 5 `+`'s, 3 `-`'s, and 3 `=`'s. We can generate all possible plans, then see if that beats the score of the one participant we was given as an input. This one takes a while, but you could speed it up because there is a cycle in the loops that only means we have to run it for 11 loops, then we can extrapolate the rest of the results from those laps.

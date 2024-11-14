@@ -183,8 +183,11 @@ const part3 = async input => {
     const [squireInput, racetrackInput] = input.replace(/\r/g, '').split('\n\n');
     const racetrack = parseRacetrack(racetrackInput.split('\n'));
 
+    // note: we only have to simulate 11 laps because after 11 laps, the totals become cyclic meaning that it will only scale
+    // this comes from the actions length being 11
+    
     // simulate the enemy's actions to find the score to beat
-    const loops = 2024;
+    const loops = 11;
     const enemy = simulateSquires([{
         actions: squireInput.split(':')[1].split(','),
         essence: 10,
