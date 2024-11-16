@@ -6,6 +6,8 @@
 | **Results** | HPGZWJCQDBSKRNXT | 195459 | 209077 |
 | **Time (in ms)** | 0.11 | 4.45 | 425.83 |
 
+Leaderboard Position: 118/56/18
+
 Hello all! In this quest, we need to find runic words inside different grids of characters. The grids have an empty 4x4 spot in the middle and we need to figure out the characters. The characters can be resolved by finding the common values in both the corresponding row and column. For example, given this grid and trying to figure out the characterr at X...
 
 ```
