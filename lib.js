@@ -233,15 +233,15 @@ const runQuest = async (quest, year, part) => {
     let results = { part1: 'N/A', part2: 'N/A', part3: 'N/A' };
 
     if (part == '1' || part == 'all') {
-        results.part1 = await part1(input1);
+        results.part1 = await part1(input1.replace(/\r/g, ''));
     }
 
     if (part == '2' || part == 'all') {
-        results.part2 = await part2(input2);
+        results.part2 = await part2(input2.replace(/\r/g, ''));
     }
 
     if (part == '3' || part == 'all') {
-        results.part3 = await part3(input3);
+        results.part3 = await part3(input3.replace(/\r/g, ''));
     }
 
     return { error: false, ...results };
@@ -275,7 +275,7 @@ const profileQuest = async (quest, year, iterations) => {
     let part1Time = 0, part2Time = 0, part3Time = 0;
     for (let i = 0; i < iterations; i++) {
         let start = performance.now();
-        part1Result = await part1(input1);
+        part1Result = await part1(input1.replace(/\r/g, ''));
         let end = performance.now();
 
         part1Time += end - start;
@@ -284,7 +284,7 @@ const profileQuest = async (quest, year, iterations) => {
     // time part2
     for (let i = 0; i < iterations; i++) {
         let start = performance.now();
-        part2Result = await part2(input2);
+        part2Result = await part2(input2.replace(/\r/g, ''));
         let end = performance.now();
 
         part2Time += end - start;
@@ -293,7 +293,7 @@ const profileQuest = async (quest, year, iterations) => {
     // time part3
     for (let i = 0; i < iterations; i++) {
         let start = performance.now();
-        part3Result = await part3(input3);
+        part3Result = await part3(input3.replace(/\r/g, ''));
         let end = performance.now();
 
         part3Time += end - start;
