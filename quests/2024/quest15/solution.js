@@ -78,8 +78,6 @@ const findPath = (grid, starting) => {
         }
     }
 
-    console.log(Object.values(herbs).map(array => array.length));
-
     // calculate distances between starting and all herbs
     const distances = {};
     distances['S'] = {};
