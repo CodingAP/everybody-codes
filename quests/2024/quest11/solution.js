@@ -1,7 +1,7 @@
 /**
  * quests\2024\quest11\solution.js
  * 
- * ~~ no title available ~~
+ * ~~ Biological Warfare ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
