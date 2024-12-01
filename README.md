@@ -2,6 +2,10 @@
 
 These are all my solutions and writeups for [Everybody Codes](https://everybody.codes/).
 
+2024 Stats:
+- Points Leaderboard: 25th
+- Time Leaderboard: Hasn't settled to be sure, but at the time of writing, 33rd
+
 ### How to Use Locally
 
 Clone this repository on your computer and run...

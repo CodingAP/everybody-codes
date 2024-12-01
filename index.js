@@ -117,7 +117,7 @@ const commandLineInfo = {
             aliases: ['q'],
             description: 'number of quest to process.',
             default: '1',
-            expects: new Array(20).fill(0).map((_, index) => (index + 1).toString())
+            expects: new Array(21).fill(0).map((_, index) => (index + 1).toString())
         },
         year: {
             aliases: ['y'],
