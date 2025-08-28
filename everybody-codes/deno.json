@@ -1,0 +1,10 @@
+{
+    "tasks": {
+        "everybody-codes": "deno run -A --env-file --unstable-ffi main.ts"
+    },
+    "imports": {
+        "@std/encoding": "jsr:@std/encoding@^1.0.10",
+        "@std/fs": "jsr:@std/fs@^1.0.19",
+        "@std/path": "jsr:@std/path@^1.1.2"
+    }
+}
