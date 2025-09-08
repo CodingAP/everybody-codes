@@ -1,28 +1,26 @@
 /**
- * quests\2024\quest14\solution.js
+ * quests\event2024\quest14\solution.ts
  * 
  * ~~ The House of Palms ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/21/2024
+ * 9/8/2025
  */
 
 /**
  * unit vectors for each direction
- * 
- * @type {{ [key: string]: { x: number, y: number, z: number } }} 
  */
-const directions = { U: { x: 0, y: 1, z: 0 }, D: { x: 0, y: -1, z: 0 }, L: { x: -1, y: 0, z: 0 }, R: { x: 1, y: 0, z: 0 }, F: { x: 0, y: 0, z: 1 }, B: { x: 0, y: 0, z: -1 } };
+const directions: { [key: string]: { x: number, y: number, z: number } } = { U: { x: 0, y: 1, z: 0 }, D: { x: 0, y: -1, z: 0 }, L: { x: -1, y: 0, z: 0 }, R: { x: 1, y: 0, z: 0 }, F: { x: 0, y: 0, z: 1 }, B: { x: 0, y: 0, z: -1 } };
 
 /**
  * parses the trees and obtains all needed information from them
  * 
- * @param {string[][]} trees list if instructions for each tree
- * @returns {{ positions: Set<string>, leaves: { x: number, y: number, z: number }[], maxY: number }}
+ * @param trees list if instructions for each tree
+ * @returns all needed information for a tree
  */
-const parseTrees = (trees) => {
-    const positions = new Set();
+const parseTrees = (trees: string[][]): { positions: Set<string>, leaves: { x: number, y: number, z: number }[], maxY: number } => {
+    const positions = new Set<string>();
     const leaves = [];
     let maxY = -Infinity;
 
@@ -52,39 +50,41 @@ const parseTrees = (trees) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const tree = input.split(',');
-    return parseTrees([tree]).maxY;
+    return parseTrees([tree]).maxY.toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const trees = input.split('\n').map(line => line.split(','));
-    return parseTrees(trees).positions.size;
+    return parseTrees(trees).positions.size.toString();
 }
 
 /**
  * finds shortest path between nodes
  * 
- * @param {Set<string>} positions all nodes' positions
- * @param {{ x: number, y: number, z: number }} starting starting node
- * @param {number} end ending y position
- * @returns {number} length of path
+ * @param positions all nodes' positions
+ * @param starting starting node
+ * @param end ending y position
+ * @returns length of path
  */
-const bfs = (positions, starting, endY) => {
+const bfs = (positions: Set<string>, starting: { x: number, y: number, z: number }, endY: number): number => {
     const queue = [{ ...starting, steps: 0 }];
     const visited = new Set([`${starting.x},${starting.y},${starting.z}`]);
 
     while (queue.length != 0) {
         const current = queue.shift();
+
+        if (current === undefined) break;
 
         if (current.x === 0 && current.y === endY && current.z === 0) return current.steps;
 
@@ -96,15 +96,17 @@ const bfs = (positions, starting, endY) => {
             }
         });
     }
+
+    return -1;
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const trees = input.split('\n').map(line => line.split(','));
     const { positions, leaves, maxY } = parseTrees(trees);
 
@@ -118,7 +120,7 @@ const part3 = async input => {
         }
     }
 
-    return minMurk;
+    return minMurk.toString();
 }
 
 export { part1, part2, part3 };

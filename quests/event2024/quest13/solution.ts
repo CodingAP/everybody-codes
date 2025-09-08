@@ -1,27 +1,30 @@
 /**
- * quests\2024\quest13\solution.js
+ * quests\event2024\quest13\solution.ts
  * 
  * ~~ Never Gonna Let You Down ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/20/2024
+ * 9/8/2025
  */
+
+interface MinHeapNode {
+    score: number;
+    data: { [key: string]: number };
+};
 
 /**
  * min heap implementation
  */
 class MinHeap {
-    constructor() {
-        this.heap = [];
-    }
+    heap: MinHeapNode[] = [];
 
     /**
      * inserts an element and heapifies it until it is in the correct location
      * 
-     * @param {{ score: number, data: { [key: string]: any } }} element element to insert with the score 
+     * @param element element to insert with the score 
      */
-    insert(element) {
+    insert(element: MinHeapNode) {
         this.heap.push(element);
         let index = this.heap.length - 1;
 
@@ -36,12 +39,12 @@ class MinHeap {
     /**
      * gets the smallest element, which is at the beginning, then heapifies
      * 
-     * @returns {{ score: number, data: { [key: string]: any } }} the smallest scored element
+     * @returns the smallest scored element
      */
-    extractMin() {
-        if (this.heap.length === 1) return this.heap.pop();
+    extractMin(): MinHeapNode {
+        if (this.heap.length === 1) return this.heap.pop() as MinHeapNode;
         const min = this.heap[0];
-        this.heap[0] = this.heap.pop();
+        this.heap[0] = this.heap.pop() as MinHeapNode;
         let index = 0;
 
         while (true) {
@@ -62,9 +65,9 @@ class MinHeap {
     /**
      * return the size of the heap
      * 
-     * @returns {number} the size of the heap
+     * @returns the size of the heap
      */
-    size() {
+    size(): number {
         return this.heap.length;
     }
 }
@@ -74,13 +77,13 @@ class MinHeap {
  * 
  * if part 3, then we need to reverse it and find path from ending point to edges of maze
  * 
- * @param {string[][]} grid maze grid with the levels 
- * @param {{ x: number, y: number, level: number }} start starting point and level
- * @param {{ x: number, y: number, level: number }} end ending point and level
- * @param {boolean} isPart3 if we are running part 3
- * @returns {number} how many units it takes to travel
+ * @param grid maze grid with the levels 
+ * @param start starting point and level
+ * @param end ending point and level
+ * @param isPart3 if we are running part 3
+ * @returns how many units it takes to travel
  */
-const findBestPath = (grid, start, end, isPart3) => {
+const findBestPath = (grid: string[][], start: { x: number, y: number, level: number } | null, end: { x: number, y: number, level: number } | null, isPart3: boolean): number => {
     const minHeap = new MinHeap();
     minHeap.insert({ score: 0, data: { ...start } });
 
@@ -104,7 +107,7 @@ const findBestPath = (grid, start, end, isPart3) => {
         if (isPart3) {
             if (x === 0 || x === grid[0].length - 1 || y === 0 || y === grid.length - 1) return current.score;
         } else {
-            if (x === end.x && y === end.y) return current.score;
+            if (end !== null && x === end.x && y === end.y) return current.score;
         }
         
         // try all possible directions and update the state accordingly
@@ -128,10 +131,10 @@ const findBestPath = (grid, start, end, isPart3) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
     let start = null, end = null;
 
@@ -149,16 +152,16 @@ const part1 = async input => {
         }
     }
 
-    return findBestPath(grid, start, end, false);
+    return findBestPath(grid, start, end, false).toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
     let start = null, end = null;
 
@@ -176,16 +179,16 @@ const part2 = async input => {
         }
     }
 
-    return findBestPath(grid, start, end, false);
+    return findBestPath(grid, start, end, false).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
     let start = null;
 
@@ -200,7 +203,7 @@ const part3 = async input => {
         }
     }
 
-    return findBestPath(grid, start, null, true);
+    return findBestPath(grid, start, null, true).toString();
 }
 
 export { part1, part2, part3 };

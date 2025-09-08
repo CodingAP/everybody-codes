@@ -1,27 +1,30 @@
 /**
- * quests\2024\quest17\solution.js
+ * quests\event2024\quest17\solution.ts
  * 
- * ~~ no title available ~~
+ * ~~ Galactic Geometry ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/26/2024
+ * 9/8/2025
  */
 
 /**
  * calculates the manhattan distance between two points
  * 
- * @param {{ x: number, y: number }} a point a
- * @param {{ x: number, y: number }} b point b
- * @returns {number} the manhattan distance
+ * @param a point a
+ * @param b point b
+ * @returns the manhattan distance
  */
-const distance = (a, b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+const distance = (a: { x: number, y: number }, b: { x: number, y: number }): number => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
 
 /**
  * disjoint set class with weights to find the mst using kruskal's algorithm 
  */
 class DisjointSet {
-    constructor(size) {
+    parent: number[];
+    weight: number[];
+
+    constructor(size: number) {
         this.parent = new Array(size).fill(0).map((_, i) => i);
         this.weight = new Array(size).fill(0);
     }
@@ -29,10 +32,10 @@ class DisjointSet {
     /**
      * get the set's defined node
      * 
-     * @param {number} a the specified node
-     * @returns {number} the set's defined node
+     * @param a the specified node
+     * @returns the set's defined node
      */
-    find(a) {
+    find(a: number): number {
         if (this.parent[a] !== a) this.parent[a] = this.find(this.parent[a]);
         return this.parent[a];
     }
@@ -40,9 +43,9 @@ class DisjointSet {
     /**
      * combines the nodes defined by the edge
      * 
-     * @param {{ a: number, b: number, weight: number }} edge the nodes to combine and the weight
+     * @param edge the nodes to combine and the weight
      */
-    union(edge) {
+    union(edge: { a: number, b: number, weight: number }) {
         const a = this.find(edge.a);
         const b = this.find(edge.b);
   
@@ -60,20 +63,20 @@ class DisjointSet {
     /**
      * returns if an edge is already connected in the set
      * 
-     * @param {{ a: number, b: number, weight: number }} edge the specified edge 
-     * @returns {boolean} if edge is connected in set
+     * @param edge the specified edge 
+     * @returns if edge is connected in set
      */
-    connected(edge) {
+    connected(edge: { a: number, b: number, weight: number }): boolean {
         return this.find(edge.a) === this.find(edge.b);
     }
 
     /**
      * gets the total weight of the minimum spanning tree that contains the node
      * 
-     * @param {number} a the specified node
-     * @returns {number} total weight of mst that contains the node
+     * @param a the specified node
+     * @returns total weight of mst that contains the node
      */
-    getWeight(a) {
+    getWeight(a: number): number {
         return this.weight[this.find(a)];
     }
 }
@@ -81,14 +84,14 @@ class DisjointSet {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
 
     // get all stars' positions
-    const stars = [];
+    const stars: { x: number, y: number }[] = [];
     const width = grid[0].length, height = grid.length;
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -97,7 +100,7 @@ const part1 = async input => {
     }
 
     // sort all possible edges
-    const edges = [];
+    const edges: { a: number, b: number, weight: number }[] = [];
     for (let i = 0; i < stars.length; i++) {
         for (let j = 0; j < stars.length; j++) {
             if (i === j) continue;
@@ -114,20 +117,20 @@ const part1 = async input => {
         set.union(edges[i]);
     }
 
-    return set.getWeight(0) + stars.length;
+    return (set.getWeight(0) + stars.length).toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
 
     // get all stars' positions
-    const stars = [];
+    const stars: { x: number, y: number }[] = [];
     const width = grid[0].length, height = grid.length;
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -136,7 +139,7 @@ const part2 = async input => {
     }
 
     // sort all possible edges
-    const edges = [];
+    const edges: { a: number, b: number, weight: number }[] = [];
     for (let i = 0; i < stars.length; i++) {
         for (let j = 0; j < stars.length; j++) {
             if (i === j) continue;
@@ -153,20 +156,20 @@ const part2 = async input => {
         set.union(edges[i]);
     }
 
-    return set.getWeight(0) + stars.length;
+    return (set.getWeight(0) + stars.length).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
 
     // get all stars' positions
-    const stars = [];
+    const stars: { x: number, y: number }[] = [];
     const width = grid[0].length, height = grid.length;
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -176,7 +179,7 @@ const part3 = async input => {
 
     // sort all possible edges
     // only allow connection if distance is smaller than 6
-    const edges = [];
+    const edges: { a: number, b: number, weight: number }[] = [];
     for (let i = 0; i < stars.length; i++) {
         for (let j = 0; j < stars.length; j++) {
             if (i === j) continue;
@@ -202,7 +205,7 @@ const part3 = async input => {
     }
     sizes.sort((a, b) => b - a);
 
-    return sizes[0] * sizes[1] * sizes[2];
+    return (sizes[0] * sizes[1] * sizes[2]).toString();
 }
 
 export { part1, part2, part3 };

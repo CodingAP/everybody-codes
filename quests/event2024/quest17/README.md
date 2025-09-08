@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 17: [Galactic Geometry](https://everybody.codes/event/2024/quests/17)
+# Everybody Codes Event 2024 - Quest 17: [Galactic Geometry](https://everybody.codes/event/2024/quests/17)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 140 | 1288 | 6082356420 |
-| **Time (in ms)** | 0.43 | 28.62 | 23.79 |
+| **Time (in ms)** | 1.37 | 30.43 | 24.39 |
 
 Leaderboard: 23/23/24
 

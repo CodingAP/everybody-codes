@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 16: [Cat Grin of Fortune](https://everybody.codes/event/2024/quests/16)
+# Everybody Codes Event 2024 - Quest 16: [Cat Grin of Fortune](https://everybody.codes/event/2024/quests/16)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
-| **Results** | <.* -:< >.< <,* | 129430320325 | 565 63 |
-| **Time (in ms)** | 0.05 | 824.75 | 1064.44 |
+| **Results** | <.* -:< >.< <.*  | 129430320325 | 565 63 |
+| **Time (in ms)** | 0.09 | 758.99 | 1085.78 |
 
 Leaderboard: 181/58/34
 

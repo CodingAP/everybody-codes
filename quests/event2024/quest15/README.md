@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 15: [From the Herbalist's Diary](https://everybody.codes/event/2024/quests/15)
+# Everybody Codes Event 2024 - Quest 15: [From the Herbalist's Diary](https://everybody.codes/event/2024/quests/15)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 188 | 506 | 1516 |
-| **Time (in ms)** | 4.95 | 34151.21 | 178503.99 |
+| **Time (in ms)** | 6.69 | 20513.34 | 101141.48 |
 
 Leaderboard: 13/159/114
 

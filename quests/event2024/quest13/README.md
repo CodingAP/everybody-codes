@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 13: [Never Gonna Let You Down](https://everybody.codes/event/2024/quests/13)
+# Everybody Codes Event 2024 - Quest 13: [Never Gonna Let You Down](https://everybody.codes/event/2024/quests/13)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 151 | 574 | 549 |
-| **Time (in ms)** | 0.47 | 3.58 | 31.73 |
+| **Time (in ms)** | 0.78 | 3.93 | 34.32 |
 
 Leaderboard: 17/17/11
 

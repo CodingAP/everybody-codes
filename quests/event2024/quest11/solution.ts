@@ -1,25 +1,24 @@
 /**
- * quests\2024\quest11\solution.js
+ * quests\event2024\quest11\solution.ts
  * 
  * ~~ Biological Warfare ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/18/2024
+ * 9/8/2025
  */
 
 /**
  * parses the input to a map of rules to reference
  * 
- * @param {string[]} lines lines from input
- * @returns {{ [key: string]: string[] }} mapping of rules
+ * @param lines lines from input
+ * @returns mapping of rules
  */
-const parseInput = lines => {
+const parseInput = (lines: string[]): { [key: string]: string[] } => {
     // get the start and end transformation of each line
-    return lines.reduce((obj, line) => {
-        let [start, end] = line.split(':');
-        end = end.split(',');
-        obj[start] = end;
+    return lines.reduce<{ [key: string]: string[] }>((obj, line) => {
+        const [start, end] = line.split(':');
+        obj[start] = end.split(',');
         return obj;
     }, {});
 }
@@ -27,16 +26,16 @@ const parseInput = lines => {
 /**
  * simulates a number of turns according to the rules provided
  * 
- * @param {{ [key: string]: string[] }} rules rules to reference
- * @param {string} starting the starting termite
- * @param {number} turns how many iterations to run
+ * @param rules rules to reference
+ * @param starting the starting termite
+ * @param turns how many iterations to run
  * @returns total population number
  */
-const simulatePopulation = (rules, starting, turns) => {
+const simulatePopulation = (rules: { [key: string]: string[] }, starting: string, turns: number): number => {
     let population = { [starting]: 1 };
 
     for (let i = 0; i < turns; i++) {
-        const newPopulation = {};
+        const newPopulation: { [key: string]: number } = {};
         const current = Object.keys(population);
         // go through all the current population and add the next generation
         for (let j = 0; j < current.length; j++) {
@@ -54,37 +53,37 @@ const simulatePopulation = (rules, starting, turns) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const rules = parseInput(input.split('\n'));
-    return simulatePopulation(rules, 'A', 4);
+    return simulatePopulation(rules, 'A', 4).toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const rules = parseInput(input.split('\n'));
-    return simulatePopulation(rules, 'Z', 10);
+    return simulatePopulation(rules, 'Z', 10).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const rules = parseInput(input.split('\n'));
 
     // simulate all starting termites, then get the max and min
     const numbers = Object.keys(rules).map(termite => simulatePopulation(rules, termite, 20)).sort((a, b) => a - b);
-    return numbers.at(-1) - numbers.at(0);
+    return (numbers[numbers.length - 1] - numbers[0]).toString();
 }
 
 export { part1, part2, part3 };

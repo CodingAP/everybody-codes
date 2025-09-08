@@ -1,11 +1,11 @@
 /**
- * quests\2024\quest19\solution.js
+ * quests\event2024\quest21\solution.ts
  * 
  * ~~ Encrypted Duck ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/28/2024
+ * 9/8/2025
  */
 
 /**
@@ -13,20 +13,20 @@
  * 
  * mutates the grid
  * 
- * @param {int[]} grid grid of indices to move around 
- * @param {number} width width of the grid
- * @param {{ x: number, y: number }} position position to rotate around
- * @param {'L' | 'R'} direction rotation direction
+ * @param grid grid of indices to move around 
+ * @param width width of the grid
+ * @param position position to rotate around
+ * @param direction rotation direction
  */
-const rotatePart = (grid, width, position, direction) => {    
+const rotatePart = (grid: number[], width: number, position: { x: number, y: number }, direction: string) => {    
     const neighbors = [{ x: -1, y: -1 }, { x: 0, y: -1 }, { x: 1, y: -1 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }, { x: -1, y: 1 }, { x: -1, y: 0 }];
     const tokens = neighbors.map(neighbor => grid[(position.y + neighbor.y) * width + (position.x + neighbor.x)]);
 
     if (direction === 'L') {
-        const move = tokens.shift();
+        const move = tokens.shift() as number;
         tokens.push(move);
     } else {
-        const move = tokens.pop();
+        const move = tokens.pop() as number;
         tokens.unshift(move);
     }
 
@@ -38,12 +38,12 @@ const rotatePart = (grid, width, position, direction) => {
 /**
  * creates a mapping that moves an index to a new index
  * 
- * @param {number} width width of the grid
- * @param {number} height height of the grid
- * @param {string} directions all the instructions
- * @returns {number[]} a mapping of indices to next indices
+ * @param width width of the grid
+ * @param height height of the grid
+ * @param directions all the instructions
+ * @returns a mapping of indices to next indices
  */
-const findNextPosition = (width, height, directions) => {
+const findNextPosition = (width: number, height: number, directions: string): number[] => {
     const grid = new Array(width * height).fill('').map((_, i) => i);
     const originalGrid = structuredClone(grid);
 
@@ -63,12 +63,12 @@ const findNextPosition = (width, height, directions) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
-    let [directions, grid] = input.split('\n\n');
-    grid = grid.split('\n').map(line => line.split(''));
+const part1 = (input: string): string => {
+    const [directions, gridInput] = input.split('\n\n');
+    let grid = gridInput.split('\n').map(line => line.split(''));
 
     // find the mappings
     const width = grid[0].length, height = grid.length;
@@ -76,7 +76,7 @@ const part1 = async input => {
 
     // 1024 is 2^10
     for (let i = 0; i < 10; i++) {
-        let newMovements = [];
+        const newMovements = [];
         for (let j = 0; j < movements.length; j++) newMovements[j] = movements[movements[j]];
         movements = newMovements;
     }
@@ -101,21 +101,21 @@ const part1 = async input => {
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
-    return 'EVERYBODY.CODES'
+const part2 = (_input: string): string => {
+    return 'EVERYBODY.CODES'; 
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
-    return 'DONE!'
+const part3 = (_input: string): string => {
+    return 'DONE!'; 
 }
 
 export { part1, part2, part3 };

@@ -1,11 +1,11 @@
 /**
- * quests\2024\quest09\solution.js
+ * quests\event2024\quest09\solution.ts
  * 
  * ~~ Sparkling Bugs ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/14/2024
+ * 9/8/2025
  */
 
 /**
@@ -13,11 +13,11 @@
  * 
  * essentialy the least change problem but with beetles
  * 
- * @param {number} max max brightness (largest change value)
- * @param {number[]} stamps possible stamp sizes (the coin value) 
- * @returns {number[]} least possible amount of beetles (least amount of coins)
+ * @param max max brightness (largest change value)
+ * @param stamps possible stamp sizes (the coin value) 
+ * @returns least possible amount of beetles (least amount of coins)
  */
-const getOptimizedTable = (max, stamps) => {
+const getOptimizedTable = (max: number, stamps: number[]): number[] => {
     const optimized = Array(max + 1).fill(Infinity);
     optimized[0] = 0;
 
@@ -32,10 +32,10 @@ const getOptimizedTable = (max, stamps) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const brightnesses = input.split('\n').map(num => parseInt(num));
     const optimized = getOptimizedTable(Math.max(...brightnesses), [1, 3, 5, 10]);
 
@@ -45,16 +45,16 @@ const part1 = async input => {
         count += optimized[brightnesses[i]];
     }
 
-    return count;
+    return count.toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const brightnesses = input.split('\n').map(num => parseInt(num));
     const optimized = getOptimizedTable(Math.max(...brightnesses), [1, 3, 5, 10, 15, 16, 20, 24, 25, 30]);
 
@@ -64,16 +64,16 @@ const part2 = async input => {
         count += optimized[brightnesses[i]];
     }
 
-    return count;
+    return count.toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const brightnesses = input.split('\n').map(num => parseInt(num));
     const optimized = getOptimizedTable(Math.max(...brightnesses), [1, 3, 5, 10, 15, 16, 20, 24, 25, 30, 37, 38, 49, 50, 74, 75, 100, 101]);
 
@@ -94,7 +94,7 @@ const part3 = async input => {
 
         count += min;
     }
-    return count;
+    return count.toString();
 }
 
 export { part1, part2, part3 };

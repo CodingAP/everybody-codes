@@ -1,28 +1,28 @@
 /**
- * quests\2024\quest20\solution.js
+ * quests\event2024\quest20\solution.ts
  * 
  * ~~ Gliding Finale ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/29/2024
+ * 9/8/2025
  */
 
-const DIRECTIONS = {
+const DIRECTIONS: { [key: string]: { x: number, y: number } } = {
     U: { x: 0, y: -1 },
     D: { x: 0, y: 1 },
     L: { x: -1, y: 0 },
     R: { x: 1, y: 0 }
 };
 
-const NEXT_DIRECTIONS = {
+const NEXT_DIRECTIONS: { [key: string]: string[] } = {
     U: ['L', 'U', 'R'],
     D: ['R', 'D', 'L'],
     L: ['U', 'L', 'D'],
     R: ['D', 'R', 'U']
 };
 
-const CHANGES = {
+const CHANGES: { [key: string]: number } = {
     '.': -1,
     '-': -2,
     '+': 1
@@ -31,13 +31,13 @@ const CHANGES = {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
     const width = grid[0].length, height = grid.length;
-    let states = {};
+    let states: { [key: string]: number } = {};
 
     // find the starting location
     let starting = { x: 0, y: 0 };
@@ -57,7 +57,7 @@ const part1 = async input => {
 
     // step 100 times, only keeping track of the newest states
     for (let i = 0; i < 100; i++) {
-        const next = {};
+        const next: { [key: string]: number } = {};
 
         Object.entries(states).forEach(([key, score]) => {
             const [x, y, direction] = key.split(',');
@@ -66,7 +66,6 @@ const part1 = async input => {
 
                 if (nextPosition.x >= 0 && nextPosition.x < grid[0].length && nextPosition.y >= 0 && nextPosition.y < grid.length && grid[nextPosition.y][nextPosition.x] !== '#') {
                     const newScore = score + CHANGES[grid[nextPosition.y][nextPosition.x]];
-
                     const key = `${nextPosition.x},${nextPosition.y},${newDirection}`;
 
                     if (next[key] === undefined) next[key] = newScore;
@@ -78,19 +77,19 @@ const part1 = async input => {
         states = next;
     }
 
-    return Math.max(...Object.values(states));
+    return Math.max(...Object.values(states)).toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
     const width = grid[0].length, height = grid.length;
-    let states = {};
+    let states: { [key: string]: number } = {};
 
     // find the starting and all the checkpoints
     let starting = { x: 0, y: 0 };
@@ -114,7 +113,7 @@ const part2 = async input => {
     let time = 0, found = false;
     while (!found) {
         time++;
-        const next = {};
+        const next: { [key: string]: number } = {};
 
         Object.entries(states).forEach(([key, score]) => {
             const [x, y, direction, checkpoint] = key.split(',');
@@ -141,16 +140,16 @@ const part2 = async input => {
         states = next;
     }
 
-    return time;
+    return time.toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
     const width = grid[0].length, height = grid.length;
 
@@ -181,7 +180,7 @@ const part3 = async input => {
         altitude += CHANGES[grid[starting.y][starting.x]];
     }
 
-    return distance;
+    return distance.toString();
 }
 
 export { part1, part2, part3 };

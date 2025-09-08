@@ -1,23 +1,22 @@
 /**
- * quests\2024\quest18\solution.js
+ * quests\event2024\quest18\solution.ts
  * 
- * ~~ no title available ~~
+ * ~~ The Ring ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/27/2024
+ * 9/8/2025
  */
 
 /**
  * returns all lengths from every palm tree labeled 'P'
  * 
- * @param {string[][]} grid grid from input
- * @param {{ x: number, y: number}[]} starting starting points to search from
- * @returns {{ [key: string]: number }}
+ * @param grid grid from input
+ * @param starting starting points to search from
  */
-const findAllPaths = (grid, starting) => {
+const findAllPaths = (grid: string[][], starting: { x: number, y: number}[]): { [key: string]: number } => {
     // create distance map for all points
-    let trees = {};
+    const trees: { [key: string]: number } = {};
     for (let y = 0; y < grid.length; y++) {
         for (let x = 0; x < grid[0].length; x++) {
             if (grid[y][x] === 'P') trees[`${x},${y}`] = Infinity;
@@ -25,7 +24,7 @@ const findAllPaths = (grid, starting) => {
     }
 
     // do a bfs and keep running until every path is exhausted
-    const queue = [];
+    const queue: { x: number, y: number, steps: number }[] = [];
     const visited = new Set();
 
     starting.forEach(position => {
@@ -35,6 +34,8 @@ const findAllPaths = (grid, starting) => {
 
     while (queue.length != 0) {
         const current = queue.shift();
+
+        if (current === undefined) break;
 
         // if tree is found, check if it is smallest path
         if (trees[`${current.x},${current.y}`] !== undefined) {
@@ -57,40 +58,40 @@ const findAllPaths = (grid, starting) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     // start from one location
     const grid = input.split('\n').map(line => line.split(''));
     const starting = [{ x: 0, y: 1 }];
 
     // find longest path
-    return Math.max(...Object.values(findAllPaths(grid, starting)));
+    return Math.max(...Object.values(findAllPaths(grid, starting))).toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     // start from multiple points
     const grid = input.split('\n').map(line => line.split(''));
     const starting = [{ x: 0, y: 1 }, { x: grid[0].length - 1, y: grid.length - 2 }];
 
     // find longest path
-    return Math.max(...Object.values(findAllPaths(grid, starting)));
+    return Math.max(...Object.values(findAllPaths(grid, starting))).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
 
     // find point where paths are the smallest
@@ -104,7 +105,8 @@ const part3 = async input => {
             }
         }
     }
-    return min;
+    
+    return min.toString();
 }
 
 export { part1, part2, part3 };

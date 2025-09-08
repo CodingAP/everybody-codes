@@ -1,21 +1,20 @@
 /**
- * quests\2024\quest16\solution.js
+ * quests\event2024\quest16\solution.ts
  * 
  * ~~ Cat Grin of Fortune ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/25/2024
+ * 9/8/2025
  */
 
 /**
  * returns the greatest common denominator of a and b
  * 
- * @param {number} a
- * @param {number} b 
- * @returns {number}
+ * @param a
+ * @param b
  */
-const gcd = (a, b) => {
+const gcd = (a: number, b: number): number => {
     while (b !== 0) [a, b] = [b, a % b];
     return Math.abs(a);
 }
@@ -23,24 +22,23 @@ const gcd = (a, b) => {
 /**
  * returns the least common multiple of a and b
  * 
- * @param {number} a
- * @param {number} b 
- * @returns {number}
+ * @param a
+ * @param b
  */
-const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
+const lcm = (a: number, b: number) => Math.abs(a * b) / gcd(a, b);
 
 /**
  * return the number of coins that was won from a given roll
  * 
  * mutates positions to new positions after roll
  * 
- * @param {number[]} positions positions of the rolls
- * @param {number[]} jumps how far each column jumps
- * @param {string[][]} wheels a list of cat faces on each column
- * @returns {number} number of coins that was won
+ * @param positions positions of the rolls
+ * @param jumps how far each column jumps
+ * @param wheels a list of cat faces on each column
+ * @returns number of coins that was won
  */
-const getCoins = (positions, jumps, wheels) => {
-    let characters = {};
+const getCoins = (positions: number[], jumps: number[], wheels: string[][]): number => {
+    const characters: { [key: string]: number } = {};
     for (let i = 0; i < positions.length; i++) {
         positions[i] = (positions[i] + jumps[i]) % wheels[i].length;
         const left = wheels[i][positions[i]][0];
@@ -55,14 +53,14 @@ const getCoins = (positions, jumps, wheels) => {
 /**
  * parses the input
  * 
- * @param {string} input input string
- * @returns {{ jumps: number[], wheels: string[][] }} the parsed input
+ * @param input input string
+ * @returns the parsed input
  */
-const parseInput = input => {
-    let [jumps, wheels] = input.split('\n\n');
-    jumps = jumps.split(',').map(num => parseInt(num));
+const parseInput = (input: string): { jumps: number[], wheels: string[][] } => {
+    const [jumps, wheels] = input.split('\n\n');
+    const parsedJumps = jumps.split(',').map(num => parseInt(num));
 
-    const wheelFaces = new Array(jumps.length).fill('').map(_ => []);
+    const wheelFaces: string[][] = new Array(jumps.length).fill('').map(_ => []);
     wheels.split('\n').forEach(line => {
         for (let i = 0; i < jumps.length; i++) {
             const face = line.slice(i * 4, i * 4 + 3);
@@ -72,16 +70,16 @@ const parseInput = input => {
         }
     });
 
-    return { jumps, wheels: wheelFaces };
+    return { jumps: parsedJumps, wheels: wheelFaces };
 }
 
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const { jumps, wheels } = parseInput(input);
 
     let faces = '';
@@ -95,10 +93,10 @@ const part1 = async input => {
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const { jumps, wheels } = parseInput(input);
 
     // it is crt-ish: find the lcm of all the roll lengths because all jumps are prime
@@ -108,7 +106,7 @@ const part2 = async input => {
     let currentCoins = 0, finalCoins = 0;
     const positions = new Array(jumps.length).fill(0);
     for (let i = 0; i < amount + (totalAmount % amount); i++) {
-        if (i == amount - 1) {
+        if (i === amount - 1) {
             finalCoins += currentCoins * Math.floor(totalAmount / amount);
             currentCoins = 0;
         }
@@ -116,21 +114,21 @@ const part2 = async input => {
         currentCoins += getCoins(positions, jumps, wheels);
     }
 
-    return finalCoins + currentCoins;
+    return (finalCoins + currentCoins).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const { jumps, wheels } = parseInput(input);
 
-    const memos = { max: {}, min: {} };
+    const memos: { [key: string]: { [key: string]: number } } = { max: {}, min: {} };
     
-    const getAllCoins = (position, index, functionName) => {
+    const getAllCoins = (position: number[], index: number, functionName: string) => {
         const key = [...position, index].join('|');
         if (memos[functionName][key] !== undefined) return memos[functionName][key];
         memos[functionName][key] = -Infinity;
@@ -149,8 +147,10 @@ const part3 = async input => {
             nextCoins += getAllCoins([...next], index - 1, functionName);
         }
 
-        // lol some weird js nonsense to determine which function to run
-        const value = Math[functionName](coins, previousCoins, nextCoins);
+        let value = 0;
+        if (functionName === 'max') value = Math.max(coins, previousCoins, nextCoins);
+        else if (functionName === 'min') value = Math.min(coins, previousCoins, nextCoins);
+
         memos[functionName][key] = value;
         return value;
     }

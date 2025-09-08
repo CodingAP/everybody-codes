@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 11: [Biological Warfare](https://everybody.codes/event/2024/quests/11)
+# Everybody Codes Event 2024 - Quest 11: [Biological Warfare](https://everybody.codes/event/2024/quests/11)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 49 | 204561 | 739054616824 |
-| **Time (in ms)** | 0.06 | 0.14 | 79.42 |
+| **Time (in ms)** | 0.09 | 0.42 | 86.25 |
 
 Leaderboard: 11/9/26
 

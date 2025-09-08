@@ -1,24 +1,24 @@
 /**
- * quests\2024\quest10\solution.js
+ * quests\event2024\quest10\solution.ts
  * 
  * ~~ Shrine Needs to Shine ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/15/2024
+ * 9/8/2025
  */
 
 /**
  * get the counts of characters from each row and column of the grid
  * 
- * @param {string[]} grid provided grid
- * @returns {{ columns: { [key: string]: number }, rows: { [key: string]: number } }} the frequency of characters in every row and column
+ * @param grid provided grid
+ * @returns the frequency of characters in every row and column
  */
-const getColumnsAndRows = grid => {
+const getColumnsAndRows = (grid: string[]): { columns: { [key: string]: number }[], rows: { [key: string]: number }[] } => {
     // get all letters in all columns and rows
     const width = grid[0].length, height = grid.length;
-    const columns = new Array(width).fill(0).map(_ => ({}));
-    const rows = new Array(height).fill(0).map(_ => ({}));
+    const columns: { [key: string]: number }[] = new Array(width).fill(0).map(_ => ({}));
+    const rows: { [key: string]: number }[] = new Array(height).fill(0).map(_ => ({}));
 
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
@@ -36,11 +36,11 @@ const getColumnsAndRows = grid => {
 /**
  * gets the runic word from the provided grid
  * 
- * @param {string[]} grid grid of runes
- * @param {boolean} part3 if its part 3, also try to return filled out grid 
- * @returns {string} the runic word
+ * @param grid grid of runes
+ * @param part3 if its part 3, also try to return filled out grid 
+ * @returns the runic word
  */
-const findRunicWord = (grid, part3) => {
+const findRunicWord = (grid: string[], part3: boolean): string | { word: string | null, grid: string[] } => {
     const { columns, rows } = getColumnsAndRows(grid);
 
     // find the word
@@ -74,7 +74,7 @@ const findRunicWord = (grid, part3) => {
     }
     
     // try to replace question marks with unpaired letters
-    const newState = getColumnsAndRows(newGrid.map(array => array.join('')), true);
+    const newState = getColumnsAndRows(newGrid.map(array => array.join('')));
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             if (newGrid[y][x] !== '.') continue;
@@ -84,7 +84,7 @@ const findRunicWord = (grid, part3) => {
 
             // check for letter pairs
             const letters = { ...newState.columns[x], ...newState.rows[y] };
-            const possibleLetter = Object.entries(letters).filter(([letter, amount]) => amount == 1);
+            const possibleLetter = Object.entries(letters).filter(([_, amount]) => amount == 1);
             if (possibleLetter.length == 1) {
                 // found replacement, replace question mark and .
                 const questionable = possibleQuestionables[0];
@@ -111,26 +111,26 @@ const findRunicWord = (grid, part3) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
-    return findRunicWord(input.split('\n'), false);
+const part1 = (input: string): string => {
+    return findRunicWord(input.split('\n'), false) as string;
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const gridOfGrids = input.split('\n\n').map(grids => grids.split('\n').map(line => line.split(' ')));
  
     // parse grid of grids
     const grids = [];
     for (let i = 0; i < gridOfGrids.length; i++) {
-        const row = new Array(gridOfGrids[i][0].length).fill(0).map(_ => new Array());
+        const row = new Array(gridOfGrids[i][0].length).fill(0).map(_ => new Array<string>());
         for (let j = 0; j < gridOfGrids[i][0].length; j++) {
             for (let k = 0; k < gridOfGrids[i].length; k++) {
                 row[j].push(gridOfGrids[i][k][j]);
@@ -142,31 +142,31 @@ const part2 = async input => {
     // find word for every grid, sum all calculated powers
     return grids.reduce((sum, grid) => {
         let count = 0;
-        const word = findRunicWord(grid, false);
+        const word = findRunicWord(grid, false) as string;
         for (let i = 0; i < word.length; i++) {
             count += (i + 1) * (word.charCodeAt(i) - 'A'.charCodeAt(0) + 1);
         }
         return sum + count;
-    }, 0);
+    }, 0).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     let grid = input.split('\n');
 
     /**
      * get the subgrid at the specific position
      * 
-     * @param {number} x x position of subgrid
-     * @param {number} y y position of subgrid
-     * @returns {string[]} subgrid at specified position
+     * @param x x position of subgrid
+     * @param y y position of subgrid
+     * @returns subgrid at specified position
      */
-    const getSubGrid = (x, y) => {
+    const getSubGrid = (x: number, y: number): string[] => {
         const subgrid = [];
         for (let j = 0; j < 8; j++) {
             let row = '';
@@ -181,24 +181,24 @@ const part3 = async input => {
     /**
      * set the subgrid at the specific position
      * 
-     * @param {number} x x position of subgrid
-     * @param {number} y y position of subgrid
-     * @param {string[]} subgrid the subgrid to insert
+     * @param x x position of subgrid
+     * @param y y position of subgrid
+     * @param subgrid the subgrid to insert
      */
-    const setSubGrid = (x, y, subgrid) => {
+    const setSubGrid = (x: number, y: number, subgrid: string[]) => {
         // since js strings are readonly, we need to turn them into arrays
-        grid = grid.map(line => line.split(''));
-        subgrid = subgrid.map(line => line.split(''));
+        const gridCopy = grid.map(line => line.split(''));
+        const subgridCopy = subgrid.map(line => line.split(''));
         for (let j = 0; j < 8; j++) {
             for (let i = 0; i < 8; i++) {
-                grid[y * 6 + j][x * 6 + i] = subgrid[j][i];
+                gridCopy[y * 6 + j][x * 6 + i] = subgrid[j][i];
             }
         }
-        grid = grid.map(line => line.join(''));
-        subgrid = subgrid.map(line => line.join(''));
+        grid = gridCopy.map(line => line.join(''));
+        subgrid = subgridCopy.map(line => line.join(''));
     }
 
-    const words = {};
+    const words: { [key: string]: string } = {};
     // the i is arbritrary, but 2 settles on the correct value
     for (let i = 0; i < 2; i++) {
         for (let y = 0; y < 10; y++) {
@@ -207,7 +207,6 @@ const part3 = async input => {
                     const stats = findRunicWord(getSubGrid(x, y), true);
                     if (typeof stats === 'string') {
                         words[`${x},${y}`] = stats;
-                        setSubGrid(x, y, stats.grid);
                     } else if (stats.word) {
                         words[`${x},${y}`] = stats.word;
                         setSubGrid(x, y, stats.grid);
@@ -225,7 +224,7 @@ const part3 = async input => {
             count += (i + 1) * (word.charCodeAt(i) - 'A'.charCodeAt(0) + 1);
         }
         return sum + count;
-    }, 0);
+    }, 0).toString();
 }
 
 export { part1, part2, part3 };

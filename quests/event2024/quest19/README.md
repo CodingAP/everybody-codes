@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 19: [Encrypted Duck](https://everybody.codes/event/2024/quests/19)
+# Everybody Codes Event 2024 - Quest 19: [Encrypted Duck](https://everybody.codes/event/2024/quests/19)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 5483259746499886 | 8569379923495661 | 2616467161546512 |
-| **Time (in ms)** | 0.29 | 38.90 | 776.17 |
+| **Time (in ms)** | 0.22 | 24.95 | 447.71 |
 
 Leaderboard: 117/113/50
 

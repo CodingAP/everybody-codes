@@ -1,27 +1,29 @@
 /**
- * quests\2024\quest15\solution.js
+ * quests\event2024\quest15\solution.ts
  * 
  * ~~ From the Herbalist's Diary ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/22/2024
+ * 9/8/2025
  */
 
 /**
  * finds the shortest path
  * 
- * @param {string[][]} grid grid from inpuit
- * @param {{ x: number, y: number }} starting starting position to search
- * @param {{ x: number, y: number }} ending all possible ending values
- * @returns {number} number of steps to get to ending
+ * @param grid grid from inpuit
+ * @param starting starting position to search
+ * @param ending all possible ending values
+ * @returns number of steps to get to ending
  */
-const bfs = (grid, starting, ending) => {
+const bfs = (grid: string[][], starting: { x: number, y: number }, ending: { x: number, y: number }): number => {
     const queue = [{ ...starting, steps: 0 }];
     const visited = new Set([`${starting.x},${starting.y}`]);
 
     while (queue.length != 0) {
         const current = queue.shift();
+
+        if (current === undefined) break;
 
         if (ending.x === current.x && ending.y === current.y) {
             return current.steps;
@@ -42,10 +44,10 @@ const bfs = (grid, starting, ending) => {
 /**
  * returns all permutations of an array
  * 
- * @param {string[]} array array to permute
- * @returns {string[][]} all permutations of the given array
+ * @param array array to permute
+ * @returns all permutations of the given array
  */
-const permute = (array) => {
+const permute = (array: string[]): string[][] => {
     if (array.length === 0) return [[]];
 
     const result = [];
@@ -62,13 +64,13 @@ const permute = (array) => {
 /**
  * find the shortest path grabbing all the herbs and coming back to start
  * 
- * @param {string[][]} grid grid parsed from input
- * @param {{ x: number, y: number }} starting starting position to search from
- * @returns {number} amount of steps
+ * @param grid grid parsed from input
+ * @param starting starting position to search from
+ * @returns amount of steps
  */
-const findPath = (grid, starting) => {
+const findPath = (grid: string[][], starting: { x: number, y: number }): number => {
     // get all herbs positions
-    const herbs = {};
+    const herbs: { [key: string]: { x: number, y: number }[] } = {};
     for (let y = 0; y < grid.length; y++) {
         for (let x = 0; x < grid[y].length; x++) {
             if (grid[y][x] !== '#' && grid[y][x] !== '.' && grid[y][x] !== '~') {
@@ -79,7 +81,7 @@ const findPath = (grid, starting) => {
     }
 
     // calculate distances between starting and all herbs
-    const distances = {};
+    const distances: { [key: string]: { [key: string]: number } } = {};
     distances['S'] = {};
     Object.entries(herbs).forEach(([herb, positions]) => {
         for (let i = 0; i < positions.length; i++) {
@@ -111,11 +113,11 @@ const findPath = (grid, starting) => {
     /**
      * recursively searchs all paths given the herb path
      * 
-     * @param {string[]} path the herb path to take
-     * @param {number} distance the last distance recorded 
-     * @param {string} last the last node traveled to
+     * @param path the herb path to take
+     * @param distance the last distance recorded 
+     * @param last the last node traveled to
      */
-    const searchPath = (path, distance, last) => {
+    const searchPath = (path: string[], distance: number, last: string) => {
         Object.keys(distances).filter(herb => herb[0] === path[0]).forEach(herb => {
             let dist = distance + distances[last][herb];
             if (dist >= min) return;
@@ -138,13 +140,14 @@ const findPath = (grid, starting) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
 
-    let starting, endings = [];
+    let starting: { x: number, y: number } = { x: 0, y: 0 };
+    const endings = [];
     for (let y = 0; y < grid.length; y++) {
         for (let x = 0; x < grid[y].length; x++) {
             if (y === 0 && grid[y][x] === '.') starting = { x, y: 0 };
@@ -152,32 +155,32 @@ const part1 = async input => {
         }
     }
 
-    return Math.min(...endings.map(ending => bfs(grid, starting, ending))) * 2;
+    return (Math.min(...endings.map(ending => bfs(grid, starting, ending))) * 2).toString();
 }
 
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
+const part2 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
-    let starting;
+    let starting: { x: number, y: number } = { x: 0, y: 0 };
     for (let x = 0; x < grid[0].length; x++) {
         if (grid[0][x] === '.') starting = { x, y: 0 };
     }
 
-    return findPath(grid, starting);
+    return findPath(grid, starting).toString();
 }
 
 /**
  * code for part 3 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 3
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async (input) => {
+const part3 = (input: string): string => {
     const grid = input.split('\n').map(line => line.split(''));
 
     // the trick is to treat the massive grid as three seperate grids, each with different starting spots
@@ -213,8 +216,7 @@ const part3 = async (input) => {
 
     // the value 8 accounts for the movements between grids on the bottom rows
     // #E..K# and #K..R# (each dot represent an extra step, with having to travel back as well)
-    return leftGrid + middleGrid + rightGrid + 8;
-};
-
+    return (leftGrid + middleGrid + rightGrid + 8).toString();
+}
 
 export { part1, part2, part3 };

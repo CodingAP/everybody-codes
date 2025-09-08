@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 9: [Sparkling Bugs](https://everybody.codes/event/2024/quests/9)
+# Everybody Codes Event 2024 - Quest 9: [Sparkling Bugs](https://everybody.codes/event/2024/quests/9)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 13435 | 5022 | 154469 |
-| **Time (in ms)** | 1.59 | 0.14 | 27.13 |
+| **Time (in ms)** | 2.07 | 0.16 | 12.75 |
 
 Leaderboard Position: 42/29/26
 

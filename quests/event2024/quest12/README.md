@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 12: [Desert Shower](https://everybody.codes/event/2024/quests/12)
+# Everybody Codes Event 2024 - Quest 12: [Desert Shower](https://everybody.codes/event/2024/quests/12)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 238 | 21047 | 714570 |
-| **Time (in ms)** | 0.61 | 2.84 | 829.89 |
+| **Time (in ms)** | 0.64 | 2.33 | 791.50 |
 
 Leaderboard: 194/185/33 (I didn't get started until 2:30 hours in)
 

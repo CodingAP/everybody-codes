@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 20: [Gliding Finale](https://everybody.codes/event/2024/quests/20)
+# Everybody Codes Event 2024 - Quest 20: [Gliding Finale](https://everybody.codes/event/2024/quests/20)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 1034 | 560 | 768792 |
-| **Time (in ms)** | 87.27 | 32365.47 | 12.99 |
+| **Time (in ms)** | 80.05 | 28946.18 | 13.74 |
 
 Leaderboard: 93/103/78
 

@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 14: [The House of Palms](https://everybody.codes/event/2024/quests/14)
+# Everybody Codes Event 2024 - Quest 14: [The House of Palms](https://everybody.codes/event/2024/quests/14)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 146 | 4898 | 1640 |
-| **Time (in ms)** | 0.35 | 4.11 | 5228.37 |
+| **Time (in ms)** | 0.26 | 3.67 | 5242.09 |
 
 Leaderboard: 59/27/12
 

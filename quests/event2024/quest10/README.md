@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 10: [Shrine Needs to Shine](https://everybody.codes/event/2024/quests/10)
+# Everybody Codes Event 2024 - Quest 10: [Shrine Needs to Shine](https://everybody.codes/event/2024/quests/10)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | HPGZWJCQDBSKRNXT | 195459 | 209077 |
-| **Time (in ms)** | 0.11 | 4.45 | 425.83 |
+| **Time (in ms)** | 0.10 | 3.76 | 34.27 |
 
 Leaderboard Position: 118/56/18
 
