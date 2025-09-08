@@ -1,27 +1,27 @@
 /**
- * quests\2024\quest07\solution.js
+ * quests\event2024\quest07\solution.ts
  * 
  * ~~ Not Fast but Furious ~~
  * this is my solution for this everybody.codes quest
  * 
  * by alex prosser
- * 11/13/2024
+ * 9/7/2025
  */
 
 /**
  * converts grid of undirected characters to an array of directed characters
  * 
- * @param {string[]} racetrackInput grid of characters to represent racetrack 
- * @returns {string[]} array of characters that represents the racetrack
+ * @param racetrackInput grid of characters to represent racetrack 
+ * @returns array of characters that represents the racetrack
  */
-const parseRacetrack = racetrackInput => {
+const parseRacetrack = (racetrackInput: string[]): string[] => {
     /**
      * gets the new position given the previous position and direction
      * 
-     * @param {{ x: number, y: number, direction: number }} state state to get next position from
-     * @returns {{ x: number, y: number }} the new position without checks
+     * @param state state to get next position from
+     * @returns the new position without checks
      */
-    const getNewPosition = state => {
+    const getNewPosition = (state: { x: number, y: number, direction: number }): { x: number, y: number } => {
         const { x, y, direction } = state;
         const directions = [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 0 }, { x: 0, y: -1 }];
         return { x: x + directions[direction].x, y: y + directions[direction].y }
@@ -31,13 +31,13 @@ const parseRacetrack = racetrackInput => {
      * checks if a position is within the bounds of the racetrack
      * doesn't check if position is on a character or not
      * 
-     * @param {number} x the x position
-     * @param {number} y the y position
-     * @param {number} width the width of the racetrack
-     * @param {number} height the height of the racktrack
-     * @returns {boolean} if position is inside the racetrack
+     * @param x the x position
+     * @param y the y position
+     * @param width the width of the racetrack
+     * @param height the height of the racktrack
+     * @returns if position is inside the racetrack
      */
-    const isValid = (x, y, width, height) => {
+    const isValid = (x: number, y: number, width: number, height: number): boolean => {
         return x >= 0 && x < width && y >= 0 && y < height;
     }
 
@@ -79,12 +79,12 @@ const parseRacetrack = racetrackInput => {
 /**
  * simulates the squires actions, either by just the actions, or by the given racetrack and actions
  * 
- * @param {{ actions: string[], essence: number, total: number }[]} squires all the squires to be simulated 
- * @param {number} loops either the amount of moves or the amount of loops, depending on if the racetrack exits 
- * @param {string[]?} racetrack if provided, the racetrack that determine some actions 
- * @returns {{ actions: string[], essence: number, total: number }[]} the modified squires
+ * @param squires all the squires to be simulated 
+ * @param loops either the amount of moves or the amount of loops, depending on if the racetrack exits 
+ * @param racetrack if provided, the racetrack that determine some actions 
+ * @returns the modified squires
  */
-const simulateSquires = (squires, loops, racetrack) => {
+const simulateSquires = (squires: { actions: string[], essence: number, total: number }[], loops: number, racetrack?: string[]): { actions: string[], essence: number, total: number }[] => {
     const length = (racetrack) ? loops * racetrack.length : loops;
 
     for (let i = 0; i < length; i++) {
@@ -108,12 +108,12 @@ const simulateSquires = (squires, loops, racetrack) => {
 /**
  * code for part 1 of the everybody.codes quest
  * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 1
+ * @param input input for the given part 
+ * @returns the result of part 1
  */
-const part1 = async input => {
+const part1 = (input: string): string => {
     const squires = input.replace(/\r/g, '').split('\n').map(line => {
-        let [id, actions] = line.split(':');
+        const [id, actions] = line.split(':');
         return {
             id,
             actions: actions.split(','),
@@ -130,25 +130,15 @@ const part1 = async input => {
 /**
  * code for part 2 of the everybody.codes quest
  * 
- * NOTE: the racetrack is inside the input file to make parsing easier
- * 
- * FORMAT:
- * A:-,-,...
- * B:+,+,...
- * 
- * S===+
- * -   =
- * ---+=
- * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 2
  */
-const part2 = async input => {
-    const [squireInput, racetrackInput] = input.replace(/\r/g, '').split('\n\n');
+const part2 = (input: string): string => {
+    const [squireInput, racetrackInput] = input.split('\n\n');
     const racetrack = parseRacetrack(racetrackInput.split('\n'));
     
     const squires = squireInput.split('\n').map(line => {
-        let [id, actions] = line.split(':');
+        const [id, actions] = line.split(':');
         return {
             id,
             actions: actions.split(','),
@@ -163,23 +153,12 @@ const part2 = async input => {
 }
 
 /**
- * code for part 2 of the everybody.codes quest
+ * code for part 3 of the everybody.codes quest
  * 
- * NOTE: the racetrack is inside the input file to make parsing easier
- * 
- * FORMAT:
- * A:-,-,...
- * B:+,+,...
- * ...
- * 
- * S===+
- * -   =
- * ---+=
- * 
- * @param {string} input 
- * @returns {Promise<string | number>} the result of part 2
+ * @param input input for the given part 
+ * @returns the result of part 3
  */
-const part3 = async input => {
+const part3 = (input: string): string => {
     const [squireInput, racetrackInput] = input.replace(/\r/g, '').split('\n\n');
     const racetrack = parseRacetrack(racetrackInput.split('\n'));
 
@@ -195,8 +174,8 @@ const part3 = async input => {
     }], loops, racetrack);
 
     // generate all possible plans that consist of 5 +'s, 3 -'s, and 3 ='s
-    const allPlans = [];
-    const generatePlans = (a, b, c, sequence = '') => {
+    const allPlans: string[] = [];
+    const generatePlans = (a: number, b: number, c: number, sequence = '') => {
         if (a === 0 && b === 0 && c === 0) {
             allPlans.push(sequence);
             return;
@@ -205,7 +184,7 @@ const part3 = async input => {
         if (b > 0) generatePlans(a, b - 1, c, sequence + '-');
         if (c > 0) generatePlans(a, b, c - 1, sequence + '=');
     }
-    generatePlans(5, 3, 3)
+    generatePlans(5, 3, 3);
 
     // try all possible plans to find how many beat the enemy
     let count = 0;
@@ -218,7 +197,7 @@ const part3 = async input => {
 
         if (player[0].total > enemy[0].total) count++;
     }
-    return count;
+    return count.toString();
 }
 
 export { part1, part2, part3 };

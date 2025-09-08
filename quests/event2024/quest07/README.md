@@ -1,10 +1,10 @@
-# Everybody Codes 2024 - Quest 7: [Not Fast but Furious](https://everybody.codes/event/2024/quests/7)
+# Everybody Codes Event 2024 - Quest 7: [Not Fast but Furious](https://everybody.codes/event/2024/quests/7)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | DFAJBGCKE | EHCGDIJAF | 3702 |
-| **Time (in ms)** | 0.10 | 1.37 | 733.65 |
+| **Time (in ms)** | 0.06 | 0.78 | 563.95 |
 
 Leaderboard Position: 9/12/23
 
