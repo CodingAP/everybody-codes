@@ -35,3 +35,5 @@ score       remainders list (last 5 only) 
  9 * 3 mod 16 = 11          11,9,3,1,11
  11 * 3 mod 16 = 1           1,11,9,3,1
 ```
+
+Finally, for part 3, we need to sum up all remainders. The big numbers exist here, so we need to rely on the fact that modulo is a cyclic function (aka it repeats itself eventually). With that in mind, we can detect the cycles and instead of running the function millions of times, we can just run it once and add how many loops there are. This saves a lot of time and processing, leading to the calculations being possible.

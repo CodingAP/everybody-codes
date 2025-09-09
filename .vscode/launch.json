@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "name": "Launch Program",
+            "type": "node",
+            "program": "${workspaceFolder}/everybody-codes/main.ts",
+            "cwd": "${workspaceFolder}/everybody-codes",
+            "env": {},
+            "runtimeExecutable": "C:\\Users\\alex_\\AppData\\Local\\Microsoft\\WinGet\\Links\\deno.EXE",
+            "runtimeArgs": [
+                "run",
+                "--env-file",
+                "--unstable-ffi"
+            ],
+            "args": [
+                "run",
+                "--id=1",
+                "--q=2"
+            ],
+            "attachSimplePort": 0
+        }
+    ]
+}
