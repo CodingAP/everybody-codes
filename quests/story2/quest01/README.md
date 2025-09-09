@@ -1,7 +1,11 @@
 # Everybody Codes Story 2 - Quest 1: [Nail Down Your Luck](https://everybody.codes/story/2/quests/1)
 
 ## Results
-|| **Part 1** | **Part 2** | **Part 3** |
+| | **Part 1** | **Part 2** | **Part 3** |
 |:--:|:---:|:---:|:---:|
 | **Results** | 40 | 1160 | 42 119 |
-| **Time (in ms)** | 0.06 | 0.82 | 39.90 |
+| **Time (in ms)** | 0.06 | 0.75 | 39.92 |
+
+Leaderboard Position: 26/25/23
+
+Hello all! This is the beginning of the second story, where I did this one a couple hours after release (can't say the same for the other two). In this quest, we need to simulate a pachinko machine given the board. Luckily, the tokens we drop are deterministic, also given to us as an input. The board consists of two characters: `.` indicating a empty spot, or `*` indicating a nail. The tokens will drop from the top and eventually reach the bottom, hitting nails and moving left or right depending on what the next move is. The movement rules are similar to a cellular automata, where each tick it will drop, and if there is a nail below, it will move left or right. However, if there a wall, it will force the token to take the direction opposite of the wall. Finally, we need keep in mind that the token will enter and exit the board off of slots, not indexes. This just means we need to convert when we calculate the coins we get. In part 1, we need to simulate the list of tokens given to us in an increasing slot (token 1 in slot 1, token 2 in slot 2, etc.) and see how many coins we get. For example, if we enter from slot 5 and we finish in slot 4, we get `(4 * 2) - 5 = 3` coins. In part 2, we need to calculate the maximum coins we can get from another list of tokens. This is a similar process to before, but we need to check every starting position. This is just a simple bruteforce search where we take the maximum. In part 3, we need to find the minimum and maximum coins we get, but we can't place the tokens in the same position. While we can use state-space searches, I saw that we can just try every order of tokens, and get the same results. It still doesn't even take that long. After than, we can take a global min and max of all the searches to get the results.
