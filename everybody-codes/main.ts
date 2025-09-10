@@ -81,6 +81,25 @@ const commandLineInfo: { commands: { [command: string]: CommandInfo }, arguments
                         console.log(`${RED_COLOR}manager: ${GREEN_COLOR}generated inputs for quest ${YELLOW_COLOR}${args.quest!}${GREEN_COLOR}, ${(parseInt(args.id!) < 2024) ? 'story' : 'event'} ${YELLOW_COLOR}${args.id}${GREEN_COLOR}!${DEFAULT_COLOR}\n`);
                     });
             }
+        },
+        'update-all': {
+            aliases: ['ua'],
+            description: 'updates all inputs from every possible quest in an event/story.',
+            arguments: ['id'],
+            command: args => {
+                const questCount = (parseInt(args.id as string) < 2024) ? 3 : 20;
+                let done = 0;
+
+                for (let i = 0; i < questCount; i++) {
+                    updateQuest((i + 1).toString(), args.id!)
+                        .then(_results => {
+                            done++;
+                            if (done === questCount) {
+                                console.log(`${RED_COLOR}manager: ${GREEN_COLOR}generated all inputs for ${(parseInt(args.id!) < 2024) ? 'story' : 'event'} ${YELLOW_COLOR}${args.id}${GREEN_COLOR}!${DEFAULT_COLOR}\n`);
+                            }
+                        });
+                }
+            }
         }
     },
     arguments: {

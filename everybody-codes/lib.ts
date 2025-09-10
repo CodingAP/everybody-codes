@@ -194,7 +194,7 @@ const updateQuest = async (quest: string, id: string) => {
     const solutionDirectory = getSolutionDirectory(quest, id);
 
     // if directory doesn't exist, generate folders
-    if (!(await exists(solutionDirectory))) {
+    if (!(await exists(join(solutionDirectory, 'inputs')))) {
         await Deno.mkdir(join(solutionDirectory, 'inputs'), { recursive: true });
     }
 
