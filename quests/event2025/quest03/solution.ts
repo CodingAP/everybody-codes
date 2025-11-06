@@ -49,7 +49,7 @@ const part3 = (input: string): string => {
         count.set(list[i], (count.get(list[i]) || 0) + 1);
     }
 
-    return `${[...count.values()].sort((a, b) => b - a)[0]}`;
+    return `${Math.max(...count.values())}`;
 }
 
 export { part1, part2, part3 };
