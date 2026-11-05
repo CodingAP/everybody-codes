@@ -6,6 +6,8 @@
 | **Results** | [187108,972400] | 1313 | 129676 |
 | **Time (in ms)** | 0.03 | 14.71 | 1160.41 |
 
+%%%
+
 Leaderboard Position: 497/402/395
 
 Hello all! This is the second quest, which consists of doing operations with complex numbers and seeing if they diverge if running the given formula. In part 1, we are given a basic overview of complex numbers and how to do operations with them. For example, if we are given a complex number z, we run the formula...

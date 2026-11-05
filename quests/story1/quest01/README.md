@@ -6,6 +6,8 @@
 | **Results** | 1444444491 | 115576637906400 | 619076392144178 |
 | **Time (in ms)** | 0.16 | 2.36 | 1742.69 |
 
+%%%
+
 Leaderboard Position: 163/126/109
 
 Hello all! There seems to be some smaller challenges that the creator decided to make, so I shall also partake in them. I didn't happen to do this one live, but I still worked with it like it was.

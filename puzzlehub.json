@@ -1,0 +1,17 @@
+{
+    "id": "everybody-codes",
+    "name": "Everybody Codes",
+    "provider": "everybody-codes",
+    "repository": "https://github.com/CodingAP/everybody-codes",
+    "layout": {
+        "puzzle": "quests/{group}/quest{puzzle:2}",
+        "solution": "solution.ts",
+        "input": "inputs/input{part}.txt"
+    },
+    "runner": {
+        "kind": "module",
+        "exports": "part{part}"
+    },
+    "template": "template.ts",
+    "data": "hub.db"
+}

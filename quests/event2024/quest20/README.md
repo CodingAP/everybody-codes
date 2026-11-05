@@ -6,6 +6,8 @@
 | **Results** | 1034 | 560 | 768792 |
 | **Time (in ms)** | 80.05 | 28946.18 | 13.74 |
 
+%%%
+
 Leaderboard: 93/103/78
 
 This was by far my worst day, as I barely could solve part 1 and had to wait until the next day to tackle parts 2 and 3. However, it is also the last day, so this means that it is all over! I had an amazing time with `everybody.codes`, and I am so excited that I have another thing in the year to look forward too. It is also cool being at the beginning of this one as well!

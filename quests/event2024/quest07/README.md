@@ -6,6 +6,8 @@
 | **Results** | DFAJBGCKE | EHCGDIJAF | 3702 |
 | **Time (in ms)** | 0.06 | 0.78 | 563.95 |
 
+%%%
+
 Leaderboard Position: 9/12/23
 
 *NOTE: This is the first quest that I did live, the past 6 quest were done after more than a day*

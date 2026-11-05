@@ -6,6 +6,8 @@
 | **Results** | 146 | 4898 | 1640 |
 | **Time (in ms)** | 0.26 | 3.67 | 5242.09 |
 
+%%%
+
 Leaderboard: 59/27/12
 
 Hello all! In this quest, we are given a bunch of directions and we need to parse them into different 3D trees to find different bits of information. For example, given this input: `U5,R3,D2,L5,U4,R5,D2`, we can produce this tree (the numbers indicate which direction it is from, with X meaning multiple):

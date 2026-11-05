@@ -6,6 +6,8 @@
 | **Results** | 1404 | 5237 | 28225 |
 | **Time (in ms)** | 0.09 | 0.10 | 0.56 |
 
+%%%
+
 Leaderboard Position: 1129/1008/941
 
 Hello all! This seems to be a new platform for language-agnostic, speed irrelevant coding problems to be solved! I decided to take an approach like my Advent of Code repository, and make an automated system that can fetch and run inputs.

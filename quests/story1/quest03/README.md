@@ -6,6 +6,8 @@
 | **Results** | 3443 | 1043621 | 95671800560 |
 | **Time (in ms)** | 0.06 | 0.12 | 0.17 |
 
+%%%
+
 Leaderboard Position: 101/98/92
 
 Hello all! In this quest, we are calculating positions of snails on a snail tower. In more common terms, we are figuring out the positions of snails on a cone, or for a 2d space, a triangle. The snails are given an initial position, and we must figure out where they will be. To make this easier, we can convert the 2d position to a more easily understandable 1d line. Each snail is on a diagonal, and the x position is the only thing we need to determine where they are. To calculate the diagonal length, we can add the positions and subtract one. Somewhat of a headache is that the positions are not zero-based, so to make my math easier, I subtract one initially. For example, for a snail at `x=2 y=2`...

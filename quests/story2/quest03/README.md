@@ -6,6 +6,8 @@
 | **Results** | 620 | 9,1,3,8,4,5,6,2,7 | 154811 |
 | **Time (in ms)** | 0.76 | 8.71 | 73347.38 |
 
+%%%
+
 Leaderboard Position: 80/79/70
 
 Hello all! In this quest, we are using a deterministic dice to play different style of games. The dice use a basic psuedo-random system as described below...

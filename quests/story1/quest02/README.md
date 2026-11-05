@@ -6,6 +6,8 @@
 | **Results** | QUACK!YBYHTBNY | QUACK!VTFLLZLFHRGMWL | QUACK!STJJJTBBFZFXNGGTNJGFWSNHHZNH |
 | **Time (in ms)** | 0.27 | 1.14 | 1.43 |
 
+%%%
+
 Leaderboard Position: 107/104/94
 
 Hello all! In this quest, we are given instructions on how a binary search tree. There are two instructions types: `ADD` and `SWAP`. The `ADD` instruction adds two nodes to two trees, referred as the left and right trees. It has the format of `ADD id=<id> left=[<rank>,<key>] right=[<rank>,<key>]`, where the left argument is added to the left tree, and the right argument is added to the right tree. The id is used to identify both nodes regardless of position in the trees. The `SWAP` extension swaps the nodes by the id, regardless of position. The format is `SWAP <id>`. In part 1, we are only given `ADD` instructions, where we need to construct the two trees. To confirm we did it right, we need to find the depth with the most nodes in each tree and add them from left to right. For example, given these trees, here is how to construct the answer...

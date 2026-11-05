@@ -6,6 +6,8 @@
 | **Results** | 140 | 1288 | 6082356420 |
 | **Time (in ms)** | 1.37 | 30.43 | 24.39 |
 
+%%%
+
 Leaderboard: 23/23/24
 
 I could have had a better time for part 3 if my cat didn't restart my computer during it.
