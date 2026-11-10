@@ -1,0 +1,23 @@
+[
+    {
+        "name": "puzzle text #1",
+        "input": "ISO-3210 7654\nISO-8742 2468\nISO-1111 1111\n",
+        "expected": {
+            "part1": "1478"
+        }
+    },
+    {
+        "name": "puzzle text #2",
+        "input": "ISO-3210 7654\nISO-8742 2468\nISO-1 1111\nISO-13 777\nISO-34 140856\nISO-789 2465112\nISO-2341 945",
+        "expected": {
+            "part2": "1161463"
+        }
+    },
+    {
+        "name": "puzzle text #3",
+        "input": "ISO2-3 23\nISO2-61 149\nISO2-978 99\nISO2-5887 5923\nISO2-76988 123749\nISO2-435657 929977\nISO2-3949 870737",
+        "expected": {
+            "part3": "50987"
+        }
+    }
+]
