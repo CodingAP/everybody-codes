@@ -1,0 +1,17 @@
+[
+    {
+        "name": "puzzle text #1",
+        "input": "BRDS:FLWR,SLTT,YSTS\nFLWR:SLTT,YSTS\nSLTT:YSTS,MLKK,BTTR\nNULL:BRDS,FLWR,SLTT\nYSTS:BRDS,FLWR\nMLKK:SPCS,NULL\nHNYN:BRDS,FLWR,SLTT,YSTS\n",
+        "expected": {
+            "part1": "7",
+            "part2": "6"
+        }
+    },
+    {
+        "name": "puzzle text #2",
+        "input": "MEAL:BRDS,CAKE,DOUG\nBRDS:DOUG,FLWR\nCAKE:DOUG,FLWR,NULLv2,NULLv3\nDOUG:FLWR,YSTS,SLTT,NULLv1\nFLWR:BRDS,DOUG\nYSTS:SPCS\nSOUP:BRDS,CAKE,DOUG,FLWR",
+        "expected": {
+            "part3": "3"
+        }
+    }
+]
